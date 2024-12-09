@@ -9,7 +9,7 @@ namespace ML
     public class Area
     {
         public int IdArea { get; set; }
-        public string NombreArea { get; set; }
-        public List<Object> Areas { get; set; }
+        public string? NombreArea { get; set; }
+        public List<Object>? Areas { get; set; }
     }
 }

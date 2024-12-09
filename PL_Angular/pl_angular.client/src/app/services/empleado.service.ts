@@ -21,6 +21,12 @@ export class EmpleadoService {
   create(empleado: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/AddEmpleado`, empleado);
   }
+  //create(empleado: any): Observable<any> {
+  //  return this.http.post(`${this.baseUrl}/AddEmpleado`, empleado, {
+  //    headers: { 'Content-Type': 'application/json' }
+  //  });
+  //}
+
 
   update(empleado: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/UpdateEmpleado`, empleado);

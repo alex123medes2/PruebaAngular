@@ -108,7 +108,7 @@ namespace BL
                     {
                         IdEmpleado = empleado.IdEmpleado,
                         NombreEmpleado = empleado.NombreEmpleado,
-                        Edad = empleado.Edad,
+                        Edad = empleado.Edad.Value,
                         CorreoElectronico = empleado.CorreoElectronico,
                         IdArea = empleado.Area.IdArea
                     });
@@ -147,7 +147,7 @@ namespace BL
                     {
                         query.IdEmpleado = empleado.IdEmpleado;
                         query.NombreEmpleado = empleado.NombreEmpleado;
-                        query.Edad = empleado.Edad;
+                        query.Edad = empleado.Edad.Value;
                         query.CorreoElectronico = empleado.CorreoElectronico;
                         query.IdArea = empleado.Area.IdArea;
 
