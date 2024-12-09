@@ -1,0 +1,27 @@
+<div class="container mt-4">
+  <h2>{{ idEmpleado ? 'Editar Empleado' : 'Crear Empleado' }}</h2>
+  <form (ngSubmit)="guardarEmpleado()">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" id="nombreEmpleado" class="form-control" [(ngModel)]="empleado.nombreEmpleado" name="nombreEmpleado" required>
+    </div>
+    <div class="mb-3">
+      <label for="edad" class="form-label">Edad</label>
+      <input type="number" id="edad" class="form-control" [(ngModel)]="empleado.edad" name="edad" required>
+    </div>
+    <div class="mb-3">
+      <label for="correo" class="form-label">Correo</label>
+      <input type="email" id="correoElectronico" class="form-control" [(ngModel)]="empleado.correoElectronico" name="correoElectronico" required>
+    </div>
+    <div class="mb-3">
+      <label for="area" class="form-label">Área</label>
+      <select id="area" class="form-select" [(ngModel)]="empleado.area.idArea" name="area" required>
+        <option value="">Seleccione área</option>
+        <option *ngFor="let area of areas" [value]="area.idArea">{{ area.nombreArea }}</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-secondary" (click)="regresar()">Regresar</button>
+  </form>
+</div>
