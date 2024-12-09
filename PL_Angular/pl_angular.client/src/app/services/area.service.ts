@@ -14,7 +14,8 @@ export class AreaService {
     return this.http.get(`${this.baseUrl}/GetAllArea`);
   }
 
-  create(area: any): Observable<any> {
+  create(nombreArea: string): Observable<any> {
+    const area = { nombreArea: nombreArea }; 
     return this.http.post(`${this.baseUrl}/AddArea`, area);
   }
 

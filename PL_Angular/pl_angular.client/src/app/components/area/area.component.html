@@ -4,14 +4,12 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Id</th>
         <th>Nombre</th>
         <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let area of areas">
-        <td>{{ area.idArea }}</td>
         <td>{{ area.nombreArea }}</td>
         <td>
           <button class="btn btn-danger" (click)="eliminarArea(area.idArea)">Eliminar</button>

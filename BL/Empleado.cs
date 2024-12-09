@@ -58,7 +58,7 @@ namespace BL
                 using (DL.EmpleadoDbContext context = new DL.EmpleadoDbContext())
                 {
                     var query = (from Empleado in context.Empleados
-                                 where Empleado.IdArea == IdEmpleado
+                                 where Empleado.IdEmpleado == IdEmpleado
                                  select new
                                  {
                                      Empleado.IdEmpleado,
@@ -140,7 +140,7 @@ namespace BL
                 using (DL.EmpleadoDbContext context = new DL.EmpleadoDbContext())
                 {
                     var query = (from Empleado in context.Empleados
-                                 where Empleado.IdArea == empleado.IdEmpleado
+                                 where Empleado.IdEmpleado == empleado.IdEmpleado
                                  select Empleado).SingleOrDefault();
 
                     if (query != null)

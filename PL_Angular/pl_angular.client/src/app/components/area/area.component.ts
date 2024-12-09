@@ -1,13 +1,3 @@
-//import { Component } from '@angular/core';
-
-//@Component({
-//  selector: 'app-area',
-//  templateUrl: './area.component.html',
-//  styleUrls: ['./area.component.css']
-//})
-//export class AreaComponent {
-
-//}
 import { Component, OnInit } from '@angular/core';
 import { AreaService } from '../../services/area.service';
 
@@ -44,18 +34,23 @@ export class AreaComponent implements OnInit {
 
   crearArea() {
     const nombreArea = prompt('Ingrese el nombre del área:');
-    this.areaService.create(nombreArea).subscribe(
-      (res) => {
-        console.log('Área creada exitosamente:', res);
-        alert('Área creada exitosamente.');
-        this.cargarAreas();
-      },
-      (error) => {
-        console.error('Error al crear área:', error);
-        alert('Error al crear el área.');
-      }
-    );
+    if (nombreArea) { 
+      this.areaService.create(nombreArea).subscribe(
+        (res) => {
+          console.log('Área creada exitosamente:', res);
+          alert('Área creada exitosamente.');
+          this.cargarAreas();
+        },
+        (error) => {
+          console.error('Error al crear área:', error);
+          alert('Error al crear el área.');
+        }
+      );
+    } else {
+      alert('El nombre del área no puede estar vacío.');
+    }
   }
+
 
   eliminarArea(id: number) {
     if (confirm('¿Está seguro de eliminar esta área?')) {

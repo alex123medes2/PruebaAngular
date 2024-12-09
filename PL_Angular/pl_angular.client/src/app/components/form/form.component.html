@@ -1,27 +1,81 @@
-<div class="container mt-4">
-  <h2>{{ idEmpleado ? 'Editar Empleado' : 'Crear Empleado' }}</h2>
-  <form (ngSubmit)="guardarEmpleado()">
-    <div class="mb-3">
-      <label for="nombre" class="form-label">Nombre</label>
-      <input type="text" id="nombreEmpleado" class="form-control" [(ngModel)]="empleado.nombreEmpleado" name="nombreEmpleado" required>
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-header bg-secondary text-white">
+      <h3 class="mb-0">{{ idEmpleado ? 'Editar Empleado' : 'Crear Empleado' }}</h3>
     </div>
-    <div class="mb-3">
-      <label for="edad" class="form-label">Edad</label>
-      <input type="number" id="edad" class="form-control" [(ngModel)]="empleado.edad" name="edad" required>
-    </div>
-    <div class="mb-3">
-      <label for="correo" class="form-label">Correo</label>
-      <input type="email" id="correoElectronico" class="form-control" [(ngModel)]="empleado.correoElectronico" name="correoElectronico" required>
-    </div>
-    <div class="mb-3">
-      <label for="area" class="form-label">Área</label>
-      <select id="area" class="form-select" [(ngModel)]="empleado.area.idArea" name="area" required>
-        <option value="">Seleccione área</option>
-        <option *ngFor="let area of areas" [value]="area.idArea">{{ area.nombreArea }}</option>
-      </select>
-    </div>
+    <div class="card-body">
+      <form (ngSubmit)="guardarEmpleado()" class="needs-validation" novalidate>
+        <div class="mb-3">
+          <label for="nombreEmpleado" class="form-label fw-bold">Nombre</label>
+          <input type="text"
+                 id="nombreEmpleado"
+                 class="form-control"
+                 [(ngModel)]="empleado.nombreEmpleado"
+                 name="nombreEmpleado"
+                 #nombreEmpleado="ngModel"
+                 required
+                 placeholder="Ingrese el nombre del empleado">
+          <div *ngIf="nombreEmpleado.invalid && nombreEmpleado.touched" class="text-danger">
+            El nombre es obligatorio.
+          </div>
+        </div>
 
-    <button type="submit" class="btn btn-primary">Guardar</button>
-    <button type="button" class="btn btn-secondary" (click)="regresar()">Regresar</button>
-  </form>
+        <div class="mb-3">
+          <label for="edad" class="form-label fw-bold">Edad</label>
+          <input type="number"
+                 id="edad"
+                 class="form-control"
+                 [(ngModel)]="empleado.edad"
+                 name="edad"
+                 #edad="ngModel"
+                 required
+                 min="18"
+                 placeholder="Ingrese la edad">
+          <div *ngIf="edad.invalid && edad.touched" class="text-danger">
+            <div *ngIf="edad.errors?.['required']">La edad es obligatoria.</div>
+            <div *ngIf="edad.errors?.['min']">La edad debe ser mayor o igual a 18.</div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="correoElectronico" class="form-label fw-bold">Correo Electrónico</label>
+          <input type="email"
+                 id="correoElectronico"
+                 class="form-control"
+                 [(ngModel)]="empleado.correoElectronico"
+                 name="correoElectronico"
+                 #correo="ngModel"
+                 required
+                 placeholder="Ingrese un correo válido">
+          <div *ngIf="correo.invalid && correo.touched" class="text-danger">
+            <div *ngIf="correo.errors?.['required']">El correo es obligatorio.</div>
+            <div *ngIf="correo.errors?.['email']">Debe ser un correo válido.</div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="area" class="form-label fw-bold">Área</label>
+          <select id="area"
+                  class="form-select"
+                  [(ngModel)]="empleado.area.idArea"
+                  name="area"
+                  #area="ngModel"
+                  required>
+            <option value="">Seleccione área</option>
+            <option *ngFor="let area of areas" [value]="area.idArea">{{ area.nombreArea }}</option>
+          </select>
+          <div *ngIf="area.invalid && area.touched" class="text-danger">
+            Seleccione un área.
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+          <button type="submit" class="btn btn-success px-4" [disabled]="!nombreEmpleado.valid || !edad.valid || !correo.valid || !area.valid">
+            Guardar
+          </button>
+          <button type="button" class="btn btn-secondary px-4" (click)="regresar()">Regresar</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
